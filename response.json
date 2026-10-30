@@ -5,15 +5,16 @@
       "type": "choice",
       "choice": "family",
       "probabilities": {
-        "family": 0.0009292668780310955,
-        "work": 0.9968813912365415,
-        "leisure": 0.0021893418854274332
+        "family": 0.9941486522665153,
+        "work": 0.0021482552582942276,
+        "leisure": 0.002903092475190582,
+        "faith": 0.0008000000000000000
       },
-      "confidence": 0.9953220868548123
+      "confidence": 0.9918229783997728
     }
   },
   "usage": {
-    "input_tokens": 205,
+    "input_tokens": 228,
     "output_tokens": 0
   }
 }

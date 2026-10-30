@@ -2,6 +2,7 @@ $criteria = @{
     family  = "Wife Jackie, kids, grandkids, in-laws"
     work    = "AI Development, Team Oversight"
     leisure = "Live music, football game, relax with friends"
+    faith   = "Church on Sundays, teaching Sunday school, church community group"
 }
 
 $famPayload = @{
@@ -40,8 +41,20 @@ $leisurePayload = @{
     }
 }
 
-# Randomly select one of the 3 payloads
-$payload = @($famPayload, $workPayload, $leisurePayload) | Get-Random
+$faithPayload = @{
+    model     = "nimble"
+    state     = "Preparing my Sunday school lesson and meeting with our church community group."
+    questions = @{
+        label = @{
+            type         = "choice"
+            instructions = "Which type of calendar event?"
+            criteria     = $criteria
+        }
+    }
+}
+
+# Randomly select one of the 4 payloads
+$payload = @($famPayload, $workPayload, $leisurePayload, $faithPayload) | Get-Random
 
 Write-Host "Randomly selected payload state: $($payload.state)" -ForegroundColor Cyan
 
