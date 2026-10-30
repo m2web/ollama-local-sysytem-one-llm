@@ -53,7 +53,7 @@ Inspired by Daniel Kahneman’s cognitive model, this repository explores **Syst
 
 ## 🔬 Live Telemetry from This Repo
 
-Below are captured runs from [`fam-work-leisure-nimble-llm.ps1`](./fam-work-leisure-nimble-llm.ps1) across all four calendar categories (`family`, `work`, `leisure`, `faith`) against the local `nimble` model. Notice `output_tokens: 0` across every classification:
+Below are captured runs from [`faith-fam-work-leisure-nimble-llm.ps1`](./faith-fam-work-leisure-nimble-llm.ps1) across all four calendar categories (`family`, `work`, `leisure`, `faith`) against the local `nimble` model. Notice `output_tokens: 0` across every classification:
 
 <table>
   <thead>
@@ -116,7 +116,7 @@ Below are captured runs from [`fam-work-leisure-nimble-llm.ps1`](./fam-work-leis
 <summary><b>🔍 Inspect Raw Wire Contract (Request &rarr; Response)</b></summary>
 <br/>
 
-**Request (`POST http://localhost:11434/v1/systemone`)**
+**Request (`POST http://localhost:11434/v1/systemone` — [`faith-payload.json`](./faith-payload.json))**
 ```json
 {
   "model": "nimble",
@@ -136,7 +136,7 @@ Below are captured runs from [`fam-work-leisure-nimble-llm.ps1`](./fam-work-leis
 }
 ```
 
-**Response ([`response-faith.json`](./response-faith.json))**
+**Response ([`faith-response.json`](./faith-response.json))**
 ```json
 {
   "model": "nimble",
@@ -171,7 +171,7 @@ Instead of a bloated framework, everything here is pure, dependency-free PowerSh
 Picks a random real-life scenario (**Faith**, **Family**, **Work**, or **Leisure**), validates that the UTF-8 payload stays under the `64 KiB` System One ceiling, fires it at `localhost:11434/v1/systemone`, and stamps an audit file named after the winning choice (`response-<outcome>-<timestamp>.json`).
 
 ```powershell
-.\fam-work-leisure-nimble-llm.ps1
+.\faith-fam-work-leisure-nimble-llm.ps1
 ```
 
 ### 2. Templates, Payloads, & Responses by Criteria

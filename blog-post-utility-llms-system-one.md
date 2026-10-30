@@ -108,7 +108,7 @@ Let’s look at the raw JSON payload (`fam-payload.json`) we send to `http://loc
 }
 ```
 
-And here is the response when routing a church-related event (`response-faith.json`):
+And here is the response when routing a church-related event (`faith-response.json`):
 
 ```json
 {
@@ -143,7 +143,7 @@ Look closely at three things in that JSON response:
 
 ## Hands-On: The PowerShell Calendar Router
 
-To test all four calendar categories in practice, I put together [`fam-work-leisure-nimble-llm.ps1`](https://github.com/m2web/ollama-local-sysytem-one-llm/blob/main/fam-work-leisure-nimble-llm.ps1).
+To test all four calendar categories in practice, I put together [`faith-fam-work-leisure-nimble-llm.ps1`](https://github.com/m2web/ollama-local-sysytem-one-llm/blob/main/faith-fam-work-leisure-nimble-llm.ps1).
 
 One important plumbing detail when working with the `/v1/systemone` endpoint: the API enforces a strict **64 KiB UTF-8 byte ceiling** on the text and schema payload. Instead of letting PowerShell’s `Invoke-RestMethod` guess the string encoding, we serialize the payload to compressed JSON, convert it to an explicit UTF-8 byte array, verify the byte length up front, and send it over the wire:
 
