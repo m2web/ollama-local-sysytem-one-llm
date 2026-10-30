@@ -19,7 +19,7 @@ As AI systems mature, the immediate future isn't a single monolithic model doing
 
 Recently, while working on a personal project to automatically categorize and route events for my **Google Calendar**, I put this exact pattern to the test using **Ollama’s `/v1/systemone` endpoint** and the **`nimble`** model.
 
-Here is a look under the hood at how a local System One LLM works, why `output_tokens: 0` changes the game for routing and triage, and the PowerShell scripts you can use to run it yourself.
+Here is a look under the hood at how a local System One LLM works, why `output_tokens: 0` changes the game for routing and triage, and the PowerShell script you can use to run it yourself.
 
 ---
 
@@ -254,52 +254,6 @@ Every single run classified cleanly with **>99% confidence** and **zero output t
 
 ---
 
-## Trust, But Verify: Validating the Probability Math
-
-When you integrate a Utility LLM into an automated pipeline—whether that is routing Google Calendar events or triaging production support tickets—you want automated assertions that verify the contract.
-
-In the repository, I also included a parameterized harness ([`Test-OllamaSystemOne.ps1`](https://github.com/m2web/ollama-local-sysytem-one-llm/blob/main/Test-OllamaSystemOne.ps1)) and a schema/math validator ([`Validate-Response.ps1`](https://github.com/m2web/ollama-local-sysytem-one-llm/blob/main/Validate-Response.ps1)) that dynamically inspects all probability keys in any response file:
-
-```powershell
-[CmdletBinding()]
-param(
-    [string]$ResponsePath = "$PSScriptRoot\response.json",
-    [string]$ExpectedChoice = ""
-)
-
-$ErrorActionPreference = "Stop"
-
-if (-not (Test-Path $ResponsePath)) {
-    throw "Response file not found at $ResponsePath"
-}
-
-$resp = Get-Content -Path $ResponsePath -Raw | ConvertFrom-Json
-$labelAns = $resp.answers.label
-
-if ($null -eq $labelAns) {
-    throw "Validation failed: Missing 'answers.label' in response."
-}
-
-$probs = $labelAns.probabilities
-$probEntries = @($probs.PSObject.Properties)
-$probSum = ($probEntries | ForEach-Object { [double]$_.Value } | Measure-Object -Sum).Sum
-$topEntry = $probEntries | Sort-Object { [double]$_.Value } -Descending | Select-Object -First 1
-
-$expectedMatch = if ($ExpectedChoice) {
-    $labelAns.choice -eq $ExpectedChoice
-} else {
-    $labelAns.choice -eq $topEntry.Name
-}
-```
-
-Running `.\Validate-Response.ps1 -ResponsePath .\response-faith.json` verifies that:
-
-* `Confidence` falls strictly within `[0.0, 1.0]`.
-* `ProbabilitySum` across `family`, `work`, `leisure`, and `faith` equals `1.0` (within floating-point rounding tolerance).
-* The winning `choice` (`faith`) matches the highest probability bucket (`0.99772`).
-
----
-
 ## Where This Goes Next: Composable Utility LLMs
 
 Working with `/v1/systemone` and `nimble` for something as personal and practical as my Google Calendar reinforced a broader architectural lesson: **not every AI problem is a chat problem.**
@@ -309,6 +263,6 @@ As we build out the next generation of local and hybrid AI systems, expect to se
 * **System 1 Utility LLMs** sitting at the edge—classifying calendar events, routing webhooks, tagging emails, and acting as sub-second gatekeepers with zero output tokens and complete local privacy.
 * **System 2 Reasoning LLMs** woken up *only* when a task genuinely requires multi-step synthesis, planning, or prose generation.
 
-If you want to experiment with these scripts or wire up your own local classifier, all of the code, sample payloads, and captured responses are available on GitHub:
+If you want to experiment with the script or wire up your own local classifier, all of the code, sample payloads, and captured responses are available on GitHub:
 
 👉 **[m2web/ollama-local-sysytem-one-llm](https://github.com/m2web/ollama-local-sysytem-one-llm)**

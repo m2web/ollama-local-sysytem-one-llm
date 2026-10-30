@@ -174,29 +174,14 @@ Picks a random real-life scenario (**Family**, **Work**, **Leisure**, or **Faith
 .\fam-work-leisure-nimble-llm.ps1
 ```
 
-### 2. [`Test-OllamaSystemOne.ps1`](./Test-OllamaSystemOne.ps1) — *Parameterized Harness*
-A flexible CLI runner. Run it out-of-the-box to triage an incident ticket (`billing` vs `bug` vs `account`), or feed it any custom state or external JSON file:
+### 2. [`template.json`](./template.json) & [`payload.json`](./payload.json) — *Wire Contract Schemas*
+Reference JSON payloads defining the `nimble` model, natural-language event `state`, and the 4-way `criteria` dictionary (`family`, `work`, `leisure`, `faith`).
 
-```powershell
-# Default support-ticket triage (500 server error -> bug)
-.\Test-OllamaSystemOne.ps1
-
-# Pass a custom state inline
-.\Test-OllamaSystemOne.ps1 -State "Can I get a receipt for last month's invoice?"
-
-# Drive from the 4-category calendar JSON payload file
-.\Test-OllamaSystemOne.ps1 -PayloadPath .\payload.json
-```
-
-### 3. [`Validate-Response.ps1`](./Validate-Response.ps1) — *Mathematical & Schema Assertions*
-Verifies that the model's output isn't just syntactically valid, but mathematically sound across any criteria dictionary:
-- Asserts `confidence` $\in [0.0, 1.0]$
-- Verifies the probability simplex sums to `1.0` ($\pm 0.02$ floating-point tolerance)
-- Checks that the selected `choice` matches the top probability key (or an explicit `-ExpectedChoice`)
-
-```powershell
-.\Validate-Response.ps1 -ResponsePath .\response-faith.json
-```
+### 3. Captured Response Artifacts
+- [`response-family-2026-10-30_11-19-31.json`](./response-family-2026-10-30_11-19-31.json) — Family classification (`confidence: 0.9918`)
+- [`response-work-2026-10-30_11-19-39.json`](./response-work-2026-10-30_11-19-39.json) — Work classification (`confidence: 0.9978`)
+- [`response-leisure-2026-10-30_11-19-51.json`](./response-leisure-2026-10-30_11-19-51.json) — Leisure classification (`confidence: 0.9987`)
+- [`response-faith.json`](./response-faith.json) / [`response-faith-2026-10-30_11-19-59.json`](./response-faith-2026-10-30_11-19-59.json) — Faith classification (`confidence: 0.9966`)
 
 ---
 
