@@ -174,14 +174,15 @@ Picks a random real-life scenario (**Family**, **Work**, **Leisure**, or **Faith
 .\fam-work-leisure-nimble-llm.ps1
 ```
 
-### 2. [`fam-template.json`](./fam-template.json), [`fam-payload.json`](./fam-payload.json), & [`fam-response.json`](./fam-response.json) — *Wire Contract Schemas*
-Reference JSON payloads and baseline response defining the `nimble` model, natural-language event `state`, and the 4-way `criteria` dictionary (`family`, `work`, `leisure`, `faith`).
+### 2. Templates, Payloads, & Responses by Criteria
+Each of the 4 calendar criteria has its own dedicated request template, wire payload, baseline response, and timestamped execution artifact:
 
-### 3. Captured Response Artifacts
-- [`response-family-2026-10-30_11-19-31.json`](./response-family-2026-10-30_11-19-31.json) — Family classification (`confidence: 0.9918`)
-- [`response-work-2026-10-30_11-19-39.json`](./response-work-2026-10-30_11-19-39.json) — Work classification (`confidence: 0.9978`)
-- [`response-leisure-2026-10-30_11-19-51.json`](./response-leisure-2026-10-30_11-19-51.json) — Leisure classification (`confidence: 0.9987`)
-- [`response-faith.json`](./response-faith.json) / [`response-faith-2026-10-30_11-19-59.json`](./response-faith-2026-10-30_11-19-59.json) — Faith classification (`confidence: 0.9966`)
+| Category | Template | Request Payload | Baseline Response | Timestamped Run Output |
+| :--- | :--- | :--- | :--- | :--- |
+| **🏡 Family** | [`fam-template.json`](./fam-template.json) | [`fam-payload.json`](./fam-payload.json) | [`fam-response.json`](./fam-response.json) | [`response-family-2026-10-30_11-19-31.json`](./response-family-2026-10-30_11-19-31.json) |
+| **💼 Work** | [`work-template.json`](./work-template.json) | [`work-payload.json`](./work-payload.json) | [`work-response.json`](./work-response.json) | [`response-work-2026-10-30_11-19-39.json`](./response-work-2026-10-30_11-19-39.json) |
+| **🎸 Leisure** | [`leisure-template.json`](./leisure-template.json) | [`leisure-payload.json`](./leisure-payload.json) | [`leisure-response.json`](./leisure-response.json) | [`response-leisure-2026-10-30_11-19-51.json`](./response-leisure-2026-10-30_11-19-51.json) |
+| **⛪ Faith** | [`faith-template.json`](./faith-template.json) | [`faith-payload.json`](./faith-payload.json) | [`faith-response.json`](./faith-response.json) | [`response-faith-2026-10-30_11-19-59.json`](./response-faith-2026-10-30_11-19-59.json) |
 
 ---
 
