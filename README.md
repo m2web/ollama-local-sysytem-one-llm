@@ -167,8 +167,8 @@ Below are captured runs from [`fam-work-leisure-nimble-llm.ps1`](./fam-work-leis
 
 Instead of a bloated framework, everything here is pure, dependency-free PowerShell talking straight to the HTTP wire as raw UTF-8 byte arrays:
 
-### 1. [`fam-work-leisure-nimble-llm.ps1`](./fam-work-leisure-nimble-llm.ps1) — *The Personal Calendar Router*
-Picks a random real-life scenario (**Family**, **Work**, **Leisure**, or **Faith**), validates that the UTF-8 payload stays under the `64 KiB` System One ceiling, fires it at `localhost:11434/v1/systemone`, and stamps an audit file named after the winning choice (`response-<outcome>-<timestamp>.json`).
+### 1. [`faith-fam-work-leisure-nimble-llm.ps1`](./faith-fam-work-leisure-nimble-llm.ps1) — *The Personal Calendar Router*
+Picks a random real-life scenario (**Faith**, **Family**, **Work**, or **Leisure**), validates that the UTF-8 payload stays under the `64 KiB` System One ceiling, fires it at `localhost:11434/v1/systemone`, and stamps an audit file named after the winning choice (`response-<outcome>-<timestamp>.json`).
 
 ```powershell
 .\fam-work-leisure-nimble-llm.ps1
