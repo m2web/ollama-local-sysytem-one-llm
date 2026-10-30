@@ -174,8 +174,8 @@ Picks a random real-life scenario (**Family**, **Work**, **Leisure**, or **Faith
 .\fam-work-leisure-nimble-llm.ps1
 ```
 
-### 2. [`template.json`](./template.json) & [`payload.json`](./payload.json) — *Wire Contract Schemas*
-Reference JSON payloads defining the `nimble` model, natural-language event `state`, and the 4-way `criteria` dictionary (`family`, `work`, `leisure`, `faith`).
+### 2. [`fam-template.json`](./fam-template.json), [`fam-payload.json`](./fam-payload.json), & [`fam-response.json`](./fam-response.json) — *Wire Contract Schemas*
+Reference JSON payloads and baseline response defining the `nimble` model, natural-language event `state`, and the 4-way `criteria` dictionary (`family`, `work`, `leisure`, `faith`).
 
 ### 3. Captured Response Artifacts
 - [`response-family-2026-10-30_11-19-31.json`](./response-family-2026-10-30_11-19-31.json) — Family classification (`confidence: 0.9918`)

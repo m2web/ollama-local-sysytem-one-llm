@@ -87,7 +87,7 @@ Instead of generating prose, the `nimble` model evaluates your `state` against t
 
 ## The Wire Contract: What Goes In and What Comes Out
 
-Let’s look at the raw JSON payload (`payload.json`) we send to `http://localhost:11434/v1/systemone`:
+Let’s look at the raw JSON payload (`fam-payload.json`) we send to `http://localhost:11434/v1/systemone`:
 
 ```json
 {
